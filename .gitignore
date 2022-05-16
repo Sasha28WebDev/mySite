@@ -1,5 +1,5 @@
 .env
 node_modules
 static
-routes
-controllers
+*.txt
+.vscode

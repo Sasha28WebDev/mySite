@@ -2,9 +2,9 @@
             <div class="primary col-lg-8 col-12">
                 <section class="about section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">Обо мне</h2>
+                        <h2 class="heading">Обо мне </h2>
                         <div class="content">
-                            <p>Write a brief intro about yourself. It's a good idea to include your personal interests and hobbies as well. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec. Commodo ligula eget dolor. Aenean massa.</p>
+                            <p>{{about}}</p>
                          
                         </div><!--//content-->
                     </div><!--//section-inner-->                 
@@ -12,11 +12,23 @@
     
                <section class="latest section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">Latest Projects</h2>
+                        <h2 class="heading">Мои проекты</h2>
+	                
                         <div class="content">    
-                                               
+                            {{#each projects}}         
                             <div class="item featured text-center">
-                                
+                                <div class="item row">
+                                <a class="col-md-4 col-12" href="{{href}}" target="_blank">
+                                <img class="img-fluid project-image rounded shadow-sm" src="assets/images/projects/project-3.png" alt="project name" />
+                                </a>
+                                <div class="desc col-md-8 col-12">
+                                    <h3 class="title"><a href="{{href}}" target="_blank">{{title}}</a></h3>
+                                    <p class="mb-2">{{description}}</p>
+                                    <p><a class="more-link" href="{{href}}" target="_blank"><i class="fas fa-external-link-alt"></i>Узнать больше</a></p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->
+                            {{/each}}
+                                {{!
                                 <div class="featured-image has-ribbon">
                                     <a href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/launch-bootstrap-4-template-for-saas-businesses/" target="_blank">
                                     <img class="img-fluid project-image rounded shadow-sm" src="assets/images/projects/project-featured.jpg" alt="project name" />
@@ -87,11 +99,12 @@
                                     <p><a class="more-link" href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/devstudio-bootstrap-theme-for-web-development-agencies-and-developers/" target="_blank"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
                                 </div><!--//desc-->                          
                             </div><!--//item-->
-                            
+                            }}
                         </div><!--//content-->  
                     </div><!--//section-inner-->                
                 </section><!--//section-->
                 
+                {{!
                 <section class="projects section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Other Projects</h2>
@@ -117,15 +130,18 @@
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
-                
+                }}
                 <section class="experience section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">Work Experience</h2>
+                        <h2 class="heading">{{experience.heading}}</h2>
                         <div class="content">
+                            {{#each experience.content}} 
                             <div class="item">
-                                <h3 class="title">Co-Founder & Lead Developer - <span class="place"><a href="#">Startup Hub</a></span> <span class="year">(2020 - Present)</span></h3>
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+                                <h3 class="title">{{title}} - <span class="place"><a href="#">{{place}}</a></span> <span class="year">({{year}})</span></h3>
+                                <p>{{explanation}}</p>
                             </div><!--//item-->
+                            {{/each}}
+                            {{!
                             <div class="item">
                                 <h3 class="title">Software Engineer - <span class="place"><a href="#">Google</a></span> <span class="year">(2019 - 2020)</span></h3>
                                 <p>Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.</p>
@@ -135,16 +151,19 @@
                                 <h3 class="title">Software Engineer - <span class="place"><a href="#">eBay</a></span> <span class="year">(2018 - 2019)</span></h3>
                                 <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
                             </div><!--//item-->
-                            
+                            }}
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
                 <section class="github section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">My GitHub</h2>
-                        <p>You can embed your GitHub contribution graph calendar using IonicaBizau's <a href="https://github.com/IonicaBizau/github-calendar" target="_blank">GitHub Calendar</a> widget. 
-                        
-                        <div id="github-graph" class="github-graph">
+                        <h2 class="heading">Мой GitHub</h2>
+                        <p>Спасибо <a href="https://github.com/IonicaBizau/github-calendar" target="_blank">GitHub Calendar</a> за визуализацию моей активности! 
+                        <div class="calendar">
+                            <!-- Loading stuff -->
+                            Loading the data just for you.
+                        </div>
+                        {{!<div id="github-graph" class="github-graph">
 
                         </div><!--//github-graph-->
 
@@ -152,14 +171,14 @@
                         <!--//Usage: https://caseyscarborough.com/projects/github-activity/ -->                       
                         <div id="ghfeed" class="ghfeed">
                         </div><!--//ghfeed-->
-                        
+                        }}
                     </div><!--//secton-inner-->
                 </section><!--//section-->
             </div><!--//primary-->
             <div class="secondary col-lg-4 col-12">
                  <aside class="info aside section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">Контакты</h2>
+                        <h2 class="heading">Информация</h2>
                         <div class="content">
                             <ul class="list-unstyled">
                                 <li><i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>{{location}}</li>
@@ -192,7 +211,7 @@
                     </div><!--//section-inner-->                 
                 </aside><!--//section-->
                 {{/if}}
-
+                {{!
                 <aside class="testimonials aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Testimonials</h2>
@@ -209,7 +228,7 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
-                
+                }}
                 <aside class="education aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Образование</h2>
@@ -239,7 +258,7 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
-                
+                {{!
                 <aside class="blog aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Latest Blog Posts</h2>
@@ -249,7 +268,7 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
-                
+                }}
                 <aside class="list music aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Favourite coding music</h2>
@@ -263,7 +282,7 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
-               <!--
+               {{!
                 <aside class="list conferences aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Conferences</h2>
@@ -273,10 +292,10 @@
                                 <li><i class="far fa-calendar-alt"></i> <a href="#">Hive</a> (Seattle)</li>
                             </ul>
              
-                        </div>--><!--//content-->
-                   <!--</div>--><!--//section-inner-->
-                <!--</aside>--><!--//section-->
+                        </div><!--//content-->
+                   </div><!--//section-inner-->
+                </aside><!--//section-->
                
               
             </div><!--//secondary-->    
-        </div><!--//row-->
+        </div><!--//row-->}}
