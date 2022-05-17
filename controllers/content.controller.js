@@ -43,6 +43,15 @@ class ContentController {
         }
         res.json(content)
     }
+    async getContentExperience(req, res, next) {
+        let content = []
+        try {
+            content = await SiteData.find({ nickName: "sasha28webdev" }, { experience: 1 })
+        } catch (err) {
+            return next(err)
+        }
+        res.json(content)
+    }
     /* 
     async getProjects(req, res) {
         const data = await db.getProjects()
@@ -98,7 +107,7 @@ class ContentController {
                     }
                 }
                 break
-            } case ('skills'): {
+            }case ('skills'): {
                 const { skill_id, skill_name, level, progress } = req.body
                 //db.collection("collectionName").update({"items.x" : 11}, {"$set" : {"items.$.val" : "any_value"}}
                 //console.log(`pr_id:${pr_id}`)
@@ -127,7 +136,30 @@ class ContentController {
                     }
                 }
                 break
+            }case ('experience'): {
+                const { exp_id, title, place, year, explanation } = req.body
+                //db.collection("collectionName").update({"items.x" : 11}, {"$set" : {"items.$.val" : "any_value"}}
+                //console.log(`pr_id:${pr_id}`)
+                if (exp_id === '') {
+                     newData = {$push:{'experience': {title, place, year, explanation}}} 
+                } else {
+                    id = {
+                        "_id": id,
+                        'experience._id': skill_id
+                    }
+                    newData = {
+                        $set:
+                        {
+                            'experience.$.title': title,
+                            'experience.$.place': place,
+                            'experience.$.year': year,
+                            'experience.$.explanation': explanation
+                        }
+                    }
+                }
+                break
             }
+            
             default: { newData = req.body }
         }
         console.log(id, newData)

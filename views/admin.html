@@ -47,7 +47,8 @@
         <div class="navbar-menu-wrapper d-flex align-items-top">
           <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-              <h1 class="welcome-text">Привет, <input hidden id="user-id" value=""><span id="header-hello-name" class="text-black fw-bold"></span></h1>
+              <h1 class="welcome-text">Привет, <input hidden id="user-id" value=""><span id="header-hello-name"
+                  class="text-black fw-bold"></span></h1>
               <h3 class="welcome-sub-text">Your performance summary this week </h3>
             </li>
           </ul>
@@ -360,7 +361,7 @@
                   <div class="forms-sample">
                     <div class="form-group">
                       <label for="about-text">Text</label>
-                      <textarea class="form-control" style="height:100%;" rows="10" id="about-text" ></textarea>
+                      <textarea class="form-control" style="height:100%;" rows="10" id="about-text"></textarea>
                     </div>
                     <!-- <div class="form-check">
                       <label class="form-check-label">
@@ -416,23 +417,24 @@
                   <div class="forms-sample">
                     <div class="form-group">
                       <label for="project-titles">Titles</label>
-                      <select id ="project-titles" class="form-control">
+                      <select id="project-titles" class="form-control">
                         <option>Новый</option>
                       </select>
                     </div>
-                    
-                      <input type="text" hidden class="form-control" id="project-id" placeholder="Link" value="">
+
+                    <input type="text" hidden class="form-control" id="project-id" placeholder="Link" value="">
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input type="text" class="form-control" id="project-title" placeholder="Image" value="">
-                      </div>
+                      <label for="name">Title</label>
+                      <input type="text" class="form-control" id="project-title" placeholder="Image" value="">
+                    </div>
                     <div class="form-group">
                       <label for="name">Image</label>
                       <input type="text" class="form-control" id="project-image" placeholder="Image" value="">
                     </div>
                     <div class="form-group">
                       <label for="name">Description</label>
-                      <textarea class="form-control" style="height:100%;" rows="10"  id="project-description" placeholder="Description" value=""></textarea>
+                      <textarea class="form-control" style="height:100%;" rows="10" id="project-description"
+                        placeholder="Description" value=""></textarea>
                     </div>
                     <div class="form-group">
                       <label for="name">Link</label>
@@ -463,23 +465,25 @@
                   <div class="forms-sample">
                     <div class="form-group">
                       <label for="skill-titles">Skills</label>
-                      <select id ="skill-titles" class="form-control">
+                      <select id="skill-titles" class="form-control">
                         <option>Новый</option>
                       </select>
                     </div>
-                    
-                      <input type="text" hidden class="form-control" id="skill-id" placeholder="Link" value="">
+
+                    <input type="text" hidden class="form-control" id="skill-id" placeholder="Link" value="">
                     <div class="form-group">
-                        <label for="name">Skill</label>
-                        <input type="text" class="form-control" id="skill-name" placeholder="Image" value="">
-                      </div>
+                      <label for="name">Skill</label>
+                      <input type="text" class="form-control" id="skill-name" placeholder="Image" value="">
+                    </div>
                     <div class="form-group">
                       <label for="name">Level</label>
-                      <input type="text" class="form-control" id="skill-level" placeholder="Description" value=""></textarea>
+                      <input type="text" class="form-control" id="skill-level" placeholder="Description"
+                        value=""></textarea>
                     </div>
                     <div class="form-group">
                       <label for="name">Progress</label>
-                      <input type="number" max="100" min="0" class="form-control" id="skill-progress" placeholder="Link" value="">
+                      <input type="number" max="100" min="0" class="form-control" id="skill-progress" placeholder="Link"
+                        value="">
                     </div>
 
                     <!-- <div class="form-check">
@@ -490,6 +494,52 @@
                       </div> -->
                     <button id="skill-save-btn" class="btn btn-primary me-2">Сохранить</button>
                     <button id="skill-del-btn" hidden class="btn btn-primary me-2">Удалить</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card" id="exp-card">
+                <div class="card-body">
+                  <h4 class="card-title">Опыт работы</h4>
+                  <p class="card-description">
+                    Basic form layout
+                  </p>
+                  <!--title: String,
+                    place: String,
+                    year: String,
+                    explanation: String,-->
+                  <div class="forms-sample">
+                    <div class="form-group">
+                      <label for="exp-titles">Titles</label>
+                      <select id="exp-titles" class="form-control">
+                        <option>Новый</option>
+                      </select>
+                    </div>
+                    <input type="text" hidden class="form-control" id="exp-id" value="">
+                    <div class="form-group">
+                      <label for="name">Title</label>
+                      <input type="text" class="form-control" id="exp-title" placeholder="Title" value="">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Place</label>
+                      <input type="text" class="form-control" id="exp-place" placeholder="Place"
+                        value=""></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Explanation</label>
+                      <input type="number" max="100" min="0" class="form-control" id="exp-explanation" placeholder="Explanation"
+                        value="">
+                    </div>
+
+                    <!-- <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="" type="checkbox">
+                          Team review meeting at 3.00 PM
+                        </label>
+                      </div> -->
+                    <button id="exp-save-btn" class="btn btn-primary me-2">Сохранить</button>
+                    <button id="exp-del-btn" hidden class="btn btn-primary me-2">Удалить</button>
                   </div>
                 </div>
               </div>
