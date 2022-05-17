@@ -415,10 +415,6 @@
                   </p>
                   <div class="forms-sample">
                     <div class="form-group">
-                      <label for="name">Heading</label>
-                      <input type="text" class="form-control" id="project-heading" placeholder="Heading" value="">
-                    </div>
-                    <div class="form-group">
                       <label for="project-titles">Titles</label>
                       <select id ="project-titles" class="form-control">
                         <option>Новый</option>
@@ -450,12 +446,55 @@
                         </label>
                       </div> -->
                     <button id="project-save-btn" class="btn btn-primary me-2">Сохранить</button>
+                    <button id="project-del-btn" hidden class="btn btn-primary me-2">Удалить</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card" id="project-card">
+                <div class="card-body">
+                  <h4 class="card-title">Навыки</h4>
+                  <p class="card-description">
+                    Basic form layout
+                  </p>
+                  <div class="forms-sample">
+                    <div class="form-group">
+                      <label for="skill-titles">Skills</label>
+                      <select id ="skill-titles" class="form-control">
+                        <option>Новый</option>
+                      </select>
+                    </div>
+                    
+                      <input type="text" hidden class="form-control" id="skill-id" placeholder="Link" value="">
+                    <div class="form-group">
+                        <label for="name">Skill</label>
+                        <input type="text" class="form-control" id="skill-name" placeholder="Image" value="">
+                      </div>
+                    <div class="form-group">
+                      <label for="name">Level</label>
+                      <input type="text" class="form-control" id="skill-level" placeholder="Description" value=""></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Progress</label>
+                      <input type="number" max="100" min="0" class="form-control" id="skill-progress" placeholder="Link" value="">
+                    </div>
 
+                    <!-- <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="" type="checkbox">
+                          Team review meeting at 3.00 PM
+                        </label>
+                      </div> -->
+                    <button id="skill-save-btn" class="btn btn-primary me-2">Сохранить</button>
+                    <button id="skill-del-btn" hidden class="btn btn-primary me-2">Удалить</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

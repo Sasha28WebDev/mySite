@@ -29,7 +29,7 @@ SiteData.find((err, data) => {
         surname: 'Веревкин',
         qualification: 'Junior backend developer',
         github: 'https://github.com/Sasha28WebDev/',
-        about:`Write a brief intro about yourself. It's a good idea to include your personal interests and hobbies as well. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec. Commodo ligula eget dolor. Aenean massa.`,
+        about: `Write a brief intro about yourself. It's a good idea to include your personal interests and hobbies as well. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec. Commodo ligula eget dolor. Aenean massa.`,
         projects_heading: "Проекты",
         projects: [{
             title: 'Управление контентом сайта-визитки',
@@ -48,14 +48,23 @@ SiteData.find((err, data) => {
         location: 'Москва',
         email: 'sasha28webdev@gmail.com',
         website: 'https://sasha28webdev.na4u.ru/',
-        
+        skills_intro: "Немного про мои навыки",
+        skills: [{
+            skill_name: "Node.js & Express.js",level: "basic",progress: 35
+        },
+        {
+            skill_name: "Python & Django",
+            level: "basic",
+            progress: 20
+        }]
+
     }).save()
 })
 
 module.exports = {
     db,
     getData: async (options1 = {}, options2 = {}) => SiteData.findOne(options1, options2),
-    updateData: async (options = {}) => SiteData.updateOne(
+    /*updateData: async (options = {}) => SiteData.updateOne(
         { nickName: "sasha28webdev" },
         { $set: options }),
     updateDataArr: async (options = {}, title) => SiteData.updateOne(
@@ -64,7 +73,7 @@ module.exports = {
     addData: async (options = {}, target) => SiteData.updateOne(
         { nickName: "sasha28webdev" },
         { $push: { target: options } },//{projects : options}
-        { upsert: true })
+        { upsert: true }) */
 }
 
 

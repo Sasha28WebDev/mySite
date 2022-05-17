@@ -14,14 +14,9 @@ const siteDataSchema = mongoose.Schema({
     surname: String,
     qualification: String,
     github: String,
-    /* 
     about: {
-        heading: String,
-        content: String,
-    }, */
-    about :{
         type: String,
-        trim:true,
+        trim: true,
     },
     projects_ids: [ObjectId],
     projects_heading: String,
@@ -32,48 +27,54 @@ const siteDataSchema = mongoose.Schema({
         href: String
     }
     ],
-    location:  {
+    location: {
         type: String,
-        maxlength : 255,
-        minLength : 5,
-        trim:true,
+        maxlength: 255,
+        minLength: 5,
+        trim: true,
     },
     email: {
         type: String,
-        maxlength : 255,
-        minLength : 5,
-        trim:true,
+        maxlength: 255,
+        minLength: 5,
+        trim: true,
     },
-    website:  {
+    website: {
         type: String,
-        maxlength : 255,
-        minLength : 5,
-        trim:true,
+        maxlength: 255,
+        minLength: 5,
+        trim: true,
     },
 
-   /*  info: {
-        heading: String,
-        content: {
-            location: String,
-            email: String,
-            website: String
+    /*  info: {
+         heading: String,
+         content: {
+             location: String,
+             email: String,
+             website: String
+         }
+     }, */
+    experience: [{
+        title: String,
+        place: String,
+        year: String,
+        explanation: String,
+    }],
+    skills_intro: String,
+    skills: [{
+        skill_name: String,
+        level: String,
+        progress: {
+            type: Number,
+            min: 0,
+            max: 100
         }
-    }, */
-    experience: {
-        heading: String,
-        content: [{
-            title: String,
-            place: String,
-            year: String,
-            explanation: String,
-        }]
-    }
-
+    }]
 })
 
 const SiteData = mongoose.model('SiteData', siteDataSchema)
 
-const Projects = mongoose.model('projects', projectsSchema)
+//const Projects = mongoose.model('projects', projectsSchema)
 module.exports = SiteData
 
 /*

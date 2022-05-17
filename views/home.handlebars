@@ -133,9 +133,9 @@
                 }}
                 <section class="experience section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">{{experience.heading}}</h2>
+                        <h2 class="heading">Опыт</h2>
                         <div class="content">
-                            {{#each experience.content}} 
+                            {{#each experience}} 
                             <div class="item">
                                 <h3 class="title">{{title}} - <span class="place"><a href="#">{{place}}</a></span> <span class="year">({{year}})</span></h3>
                                 <p>{{explanation}}</p>
@@ -189,19 +189,19 @@
                     </div><!--//section-inner-->                 
                 </aside><!--//aside-->
                 
-                {{#if skills_enabled}}
+               {{! {{#if skills_enabled}}
                 <aside class="skills aside section">
                     <div class="section-inner shadow-sm rounded">
-                        <h2 class="heading">{{skills_h1}}</h2>
+                        <h2 class="heading">Навыки</h2>
                         <div class="content">
-                            <p class="intro">{{text}}</p>
+                            <p class="intro">{{skills_intro}}</p>
                             <div class="skillset">
                                 
-                                {{#each stack}}
+                                {{#each skills}}
                                 <div class="item">
-                                    <h3 class="level-title">{{name}}<span class="level-label" data-bs-toggle="tooltip" data-bs-placement="left" title=""><i class="fas fa-info-circle"></i>{{skill}}</span></h3>
+                                    <h3 class="level-title">{{skill_name}}<span class="level-label" data-bs-toggle="tooltip" data-bs-placement="left" title=""><i class="fas fa-info-circle"></i>{{level}}</span></h3>
                                     <div class="level-bar progress">
-									    <div class="progress-bar level-bar-inner" role="progressbar" style="width: {{progress}}" aria-valuenow="96"  aria-valuemin="0" aria-valuemax="96"></div>
+									    <div class="progress-bar level-bar-inner" role="progressbar" style="width: {{progress}}%" aria-valuenow="96"  aria-valuemin="0" aria-valuemax="96"></div>
 									</div><!--//level-bar-->                               
                                 </div>
                                 {{/each}}
@@ -210,7 +210,7 @@
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </aside><!--//section-->
-                {{/if}}
+               {{! {{/if}}
                 {{!
                 <aside class="testimonials aside section">
                     <div class="section-inner shadow-sm rounded">

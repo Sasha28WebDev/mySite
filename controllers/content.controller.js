@@ -33,14 +33,23 @@ class ContentController {
             return next(err)
         }
         res.json(content)
-        /* const data = await db.getData({ name: "Александр" }, { projects: 1 }) */
-        // res.json(content)
+    }
+    async getContentSkills(req, res, next) {
+        let content = []
+        try {
+            content = await SiteData.find({ nickName: "sasha28webdev" }, { skills: 1 })
+        } catch (err) {
+            return next(err)
+        }
+        res.json(content)
     }
     /* 
     async getProjects(req, res) {
         const data = await db.getProjects()
         res.json(data)
     } */
+
+
     async updateContent(req, res, next) {
         //console.log(req.params.id)
         let { id, block } = req.body
@@ -57,25 +66,66 @@ class ContentController {
                 break
             }
             case ('projects'): {
-                const { pr_id,title, description, image, link } = req.body
+                const { pr_id, title, description, image_url, link } = req.body
                 //db.collection("collectionName").update({"items.x" : 11}, {"$set" : {"items.$.val" : "any_value"}}
-                id = {
-                    "_id" : id,
-                    'projects._id': pr_id
-                }
-                newData = {
-                    $set:
-                    {
-                        'projects.$.title': title,
-                        'projects.$.description': description,
-                        'projects.$.image_url': image,
-                        'projects.$.href': link
+                //console.log(`pr_id:${pr_id}`)
+                if (pr_id === '') {
+                    newData = {
+                        $push:
+                        {
+                            'projects': {
+                                title,
+                                description,
+                                image_url,
+                                href: link
+                            }
+                        }
+
                     }
-
+                } else {
+                    id = {
+                        "_id": id,
+                        'projects._id': pr_id
+                    }
+                    newData = {
+                        $set:
+                        {
+                            'projects.$.title': title,
+                            'projects.$.description': description,
+                            'projects.$.image_url': image_url,
+                            'projects.$.href': link
+                        }
+                    }
                 }
+                break
+            } case ('skills'): {
+                const { skill_id, skill_name, level, progress } = req.body
+                //db.collection("collectionName").update({"items.x" : 11}, {"$set" : {"items.$.val" : "any_value"}}
+                //console.log(`pr_id:${pr_id}`)
+                if (skill_id === '') {
+                     newData = {
+                        $push:
+                        {
+                            'skills': {
+                                skill_name, level, progress
+                            }
+                        }
 
-
-
+                    } 
+                } else {
+                    id = {
+                        "_id": id,
+                        'skills._id': skill_id
+                    }
+                    newData = {
+                        $set:
+                        {
+                            'skills.$.skill_name': skill_name,
+                            'skills.$.level': level,
+                            'skills.$.progress': progress,
+                        }
+                    }
+                }
                 break
             }
             default: { newData = req.body }
@@ -83,93 +133,35 @@ class ContentController {
         console.log(id, newData)
         SiteData.findOneAndUpdate(id, newData, (err, result) => {
             if (err) {
-                return res.status(400).json({ message: "error" })
+                return res.status(400).json({ message: err })
             }
-            console.log(result)
             res.json({ message: "updated" })
         })
     }
-   /*  async updateContent(req, res) {
-        //console.log(req.body)
-        const { block } = req.body
-        console.log(`block : ${block}`)
-        let newData = {}
-        let id = ''
-        //в теле запроса передаем название блока, данные в котором мы хотим изменить
+    async deleteContent(req, res, next) {
+        let { id, block } = req.body
+        //console.log(req.params.id)
+        let delData
         switch (block) {
-            case ("main"): {
-                const { name, surname, qualification, github } = req.body
-                newData = { name, surname, qualification, github }
-                console.log(newData)
-                const data = await db.updateData(newData)
-                res.json({ 'status': data })
-                break
-            }
-            case ('about'): {
-                const { heading, content } = req.body
-                newData = { about: { heading, content } }
-                break
-            }
-            case ('experience'): {
-                const { heading } = req.body
-                const content = req.body.content
-                newData = {
-                    experience: {
-                        heading,
-                        content
-                    }
-                }
-                console.log(newData)
-                break
-            }
             case ('projects'): {
-                const { heading } = req.body
-                const content = req.body.content
-                newData = {
-                    projects: {
-                        heading,
-                        content
-                    }
-                }
-                console.log(newData)
+                const { pr_id } = req.body
+                delData = { $pull: { projects: { _id: pr_id } } }
                 break
             }
-            case ('projects-test'): {
-                const { id, currentTitle, title, image_url, description, href } = req.body
-                console.log(id)
-                newData = {
-                    "projects.$.title": title,
-                    "projects.$.description": description
-                }//, image_url, description, href }
-                console.log(`newdata = ${newData} , id =${currentTitle}`)
-                const data = await db.updateDataArr(newData, currentTitle)
-                res.json({ 'status': data })
-                break
-            }
-            case ('info'): {
-                const { heading } = req.body
-                const { location, email, website } = req.body.content
-                newData = {
-                    info: {
-                        heading,
-                        content: { location, email, website }
-                    }
-                }
-                console.log(newData)
+            case ('skills'): {
+                const {skill_id } = req.body
+                delData = { $pull: { skills: { _id: skill_id } } }
                 break
             }
             default: { }
         }
-        ///* if (id === '') {
-        const data = await db.updateData(newData)
-        res.json({ 'status': data })
-        //}
-        else {
-            const data = await db.updateData({ id }, newData)
-            res.json({ 'status': data })
-        } 
-
-
-    } */
+        console.log(id, delData)
+        SiteData.findOneAndUpdate({ _id: id }, delData, { 'new': true }, (err, result) => {
+            if (err) {
+                return res.status(400).json({ message: err })
+            }
+            res.json({ message: "deleted" })
+        })
+    }
 }
 module.exports = new ContentController()
