@@ -2,13 +2,11 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 const { DB_CONNECTION_STRING } = process.env
-const SiteData = require('./models/data')
+const {SiteData} = require('./models/data')
 
 mongoose.connect(DB_CONNECTION_STRING, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    //useFindAndModify: false,
-    //useCreateIndex: true
+    useUnifiedTopology: true
 })
 const db = mongoose.connection
 db.on('error', err => {

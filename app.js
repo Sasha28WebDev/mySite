@@ -1,38 +1,60 @@
-const fs = require('fs');
-const http = require('http');
-const path = require('path');
+const fs = require('fs')
+const http = require('http')
+const path = require('path')
+const passport = require('passport')
 require('dotenv').config()
 const express = require('express')
-const bodyParser = require('body-parser')
+//const bodyParser = require('body-parser')
 const createError = require('http-errors');
-const { engine } = require ('express-handlebars');
+const { engine } = require('express-handlebars');
 const app = express()
+require('dotenv').config()
+const { APP_PORT, APP_IP, APP_PATH } = process.env;
+const { default: AdminBro } = require('admin-bro');
+const options = require('./controllers/admin.controller');
+
+
+
+
+
 const handlers = require('./lib/handlers')
 const contentRouter = require('./routes/content.routes')
-//const projectRouter = require('./routes/project.routes')
-const { APP_PORT, APP_IP, APP_PATH } = process.env;
+const buildAdminRouter  = require('./routes/admin.routes')
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars')
 app.set('views', './views')
+
+//-----------------------middleware------------------------
+
 app.use(express.static('./static'))
-app.use(express.json())
 
 
+//------------------------routes----------------------------
 
 app.get('/', handlers.dataList)
-app.use('/api',contentRouter)
-app.get('/admin',(req,res)=>{
-  res.sendFile(path.join(__dirname + '/views/admin.html'))
-})
+app.use('/api', contentRouter)
+const admin = new AdminBro(options);
+const router = buildAdminRouter(admin);
+app.use(admin.options.rootPath, router);
+/* app.use(function (err, req, res, next) {
+  res.status(500).send('Something broke!')
+}) */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // catch 404 and forward to error handler
 /* app.use(function(req, res, next) {
   next(createError(404));
 }); */
-app.use(function(err,req, res, next) {
-    res.status(500).send('Something broke!')
-})
-app.listen(APP_PORT,()=>console.log(`server running at http://${APP_IP}:${APP_PORT}/`))
+
+
+app.listen(APP_PORT, () => console.log(`SERVER running at http://${APP_IP}:${APP_PORT}`))
+
+
+
+
+/*
 
 const server = http.createServer(app)
 
@@ -45,3 +67,4 @@ process.on('SIGTERM', () => {
     process.exit(0);
   });
 });
+*/
