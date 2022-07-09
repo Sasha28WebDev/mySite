@@ -27,7 +27,7 @@ app.set('views', './views')
 
 //-----------------------middleware------------------------
 
-app.use(express.static('./static'))
+app.use(express.static('../static'))
 
 
 //------------------------routes----------------------------
