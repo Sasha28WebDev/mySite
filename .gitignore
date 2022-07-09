@@ -1,6 +1,6 @@
-.env
-node_modules
-static\uploads
-*.txt
-.vscode
-makefile
+server/.env
+server/node_modules
+static/
+server/*.txt
+server/.vscode
+server/makefile
