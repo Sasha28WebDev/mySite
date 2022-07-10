@@ -36,7 +36,7 @@ const options = {
                 return uploadBeforeHook(modifiedRequest, context)
             },
         },
-        edit: {
+       /*  edit: {
             after: async (response, request, context) => {
                 const modifiedResponce = await passwordAfterHook(response, request, context)
                 console.log('after')
@@ -47,7 +47,7 @@ const options = {
                 console.log('before')
                 return uploadBeforeHook(modifiedRequest, context)
             },
-        },
+        }, */
     }
 }
 
